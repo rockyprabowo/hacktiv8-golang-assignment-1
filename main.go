@@ -11,6 +11,9 @@ func getIdFromArgument() (string, error) {
 	if len(os.Args) == 1 {
 		return "", fmt.Errorf("error: please provide an ID")
 	}
+	if len(os.Args) > 2 {
+		fmt.Println("warning: only the first argument passed, the rest are ignored")
+	}
 	return os.Args[1], nil
 }
 
