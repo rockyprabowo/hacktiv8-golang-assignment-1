@@ -2,41 +2,48 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"log"
 	"rockyprabowo/hacktiv8-assignments/assignment-1/classmates"
 )
 
-// It returns the first argument passed to the program, or an error if no argument was passed
-func getIdFromArgument() (string, error) {
-	if len(os.Args) == 1 {
-		return "", fmt.Errorf("error: please provide an ID")
-	}
-	if len(os.Args) > 2 {
-		fmt.Println("warning: only the first argument passed, the rest are ignored")
-	}
-	return os.Args[1], nil
-}
-
-// If there's an error, print it and exit the program
-func exitWithError(err error) {
-	fmt.Println(err)
-	os.Exit(1)
-}
-
+// Get the attendance number from command argument (os.Args) or user input (fmt.Scanln), get the
+// classmate with the Attendance Number, and print the classmate data.
 func main() {
-	// 1. Get the ID from command argument (os.Args)
-	id, err := getIdFromArgument()
-	if err != nil {
-		exitWithError(err)
-	}
+	var errorCount int
+	ShowBanner()
+	Setup()
 
-	// 2. Get the classmate with the ID
-	classmate, err := classmates.GetById(id)
-	if err != nil {
-		exitWithError(err)
-	}
-	fmt.Printf("Found the classmate with the ID = %s\n", id)
+	// do-while loop "hacks" for Go
+	for interactive := true; interactive; interactive = state.interactive {
+		// 1. Get the attendance number from command argument (os.Args) or user input (fmt.Scanln).
+		numbers := GetNumberFromInput()
 
-	// 3. Print the classmate data
-	classmate.Print()
+		for _, number := range numbers {
+			// 2. Get the classmate with the Attendance Number.
+			classmate, err := classmates.GetByAttendanceNumber(number)
+			if err != nil {
+				log.Println("debug: [main] " + err.Error())
+				fmt.Println("error: " + err.Error())
+				fmt.Println()
+				errorCount++
+				continue
+			}
+			log.Printf("debug: [main] found the Classmate with AttendanceNumber = %d\n", number)
+
+			// 3. Print the classmate data
+			classmate.Print()
+		}
+
+		if len(numbers) == 0 {
+			fmt.Println("Invalid input. Please try again.")
+			fmt.Println()
+		}
+
+		if !state.interactive {
+			requestedCount := len(numbers)
+			processedCount := len(numbers) - errorCount
+			fmt.Printf("%d requested, %d processed, %d error(s)\n", requestedCount, processedCount, errorCount)
+		}
+
+	}
 }

@@ -1,6 +1,6 @@
 package classmates
 
-// TODO: Use real data.
+// TODO: Use real data when it's possible.
 var classmates = []Classmate{
 	{
 		AttendanceNumber:    1,
