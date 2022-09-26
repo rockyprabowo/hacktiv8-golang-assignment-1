@@ -9,10 +9,25 @@ This project applies the programming concepts on Go I learned from the course so
 ## Usage
 
 * Clone this repository and change the current directory to the directory where you cloned repository.
-* Run this command: `$ go run . [num]` where `[num]` is the attendance number you want to find.
-* Or, you can build this application first with `$ go build` and then execute the application with `./assignment-1 [num]` on macOS or Linux, or `./assignment-1.exe [num]` on Windows.
+* You can build this application first with `$ go build`.  
+Then execute the application with `./assignment-1 [num]` on macOS or Linux, or `./assignment-1.exe [num]...` on Windows.  
+
+* Or, you can run the application with: `$ go run . [num]...` where `[num]` is the attendance number you want to find.
+
+**Tips**:  
+
+* You can omit `[num]` if you want to run the application interactively.  
+* You can feed the application with input from stdin.  
+* You can find multiple data by seperating the attendance number with space.  
 
 ## Changelog
+
+### 3.0
+
+* Introduce memoisation and invalid marker on classmate collection.
+* Now accepts and combine the input from stdin and command arguments.
+* New debug logging function.
+* Adds a lot of behind-the-scene stuff like helpers and set data structure.
 
 ### 2.0
 

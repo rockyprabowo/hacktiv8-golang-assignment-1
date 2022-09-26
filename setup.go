@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
+	h "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
 )
 
 // It's a struct that holds the state of the application.
@@ -33,11 +33,13 @@ var state _AppState
 // `Setup()` sets up the application state and determines if the application should enter interactive
 // mode
 func Setup() {
-	helpers.SetupLogging()
+	// Setup logging and application initial states.
+	h.SetupLogging()
+
 	state = _AppState{
-		debugMode: helpers.IsDebug(),
-		fromStdin: helpers.HasDataInStdin(),
-		fromArgs:  helpers.HasArguments(),
+		debugMode: h.IsDebug(),
+		fromStdin: h.HasDataInStdin(),
+		fromArgs:  h.HasArguments(),
 	}
 	// Application will enter interactive mode if there is no input from stdin or command arguments
 	state.interactive = !(state.fromStdin || state.fromArgs)

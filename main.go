@@ -2,48 +2,52 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"os"
 	"rockyprabowo/hacktiv8-assignments/assignment-1/classmates"
+	h "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
 )
 
 // Get the attendance number from command argument (os.Args) or user input (fmt.Scanln), get the
 // classmate with the Attendance Number, and print the classmate data.
 func main() {
-	var errorCount int
 	ShowBanner()
 	Setup()
 
 	// do-while loop "hacks" for Go
 	for interactive := true; interactive; interactive = state.interactive {
-		// 1. Get the attendance number from command argument (os.Args) or user input (fmt.Scanln).
+		counter, increment, incrementError := h.UseProcessCounter()
+
+		// 1. Get the attendance number from command argument or user input (stdin or interactive).
 		numbers := GetNumberFromInput()
 
 		for _, number := range numbers {
 			// 2. Get the classmate with the Attendance Number.
 			classmate, err := classmates.GetByAttendanceNumber(number)
 			if err != nil {
-				log.Println("debug: [main] " + err.Error())
+				h.PrintDebug(err.Error(), "main")
 				fmt.Println("error: " + err.Error())
 				fmt.Println()
-				errorCount++
+				incrementError()
 				continue
 			}
-			log.Printf("debug: [main] found the Classmate with AttendanceNumber = %d\n", number)
+			h.PrintDebug(fmt.Sprintf("found the Classmate with AttendanceNumber = %d\n", number),
+				"main")
 
 			// 3. Print the classmate data
 			classmate.Print()
+			increment()
 		}
 
 		if len(numbers) == 0 {
-			fmt.Println("Invalid input. Please try again.")
+			fmt.Println("error: invalid input. please try again.")
 			fmt.Println()
+			if !state.interactive {
+				os.Exit(1)
+			}
+			continue
 		}
 
-		if !state.interactive {
-			requestedCount := len(numbers)
-			processedCount := len(numbers) - errorCount
-			fmt.Printf("%d requested, %d processed, %d error(s)\n", requestedCount, processedCount, errorCount)
-		}
-
+		fmt.Printf("%d requested, %d processed, %d error(s)\n",
+			counter.RequestedCount, counter.ProcessedCount, counter.ErrorCount)
 	}
 }

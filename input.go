@@ -1,9 +1,9 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"os"
-	"rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
+	h "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
 )
 
 // Get the numbers from the input source, whether it's from stdin, command line arguments, or
@@ -11,20 +11,21 @@ import (
 func GetNumberFromInput() (numbers []uint64) {
 	if !state.interactive {
 		if state.fromStdin {
-			numbers = helpers.StdinNumberInput()
-			log.Printf("debug: [GetNumberFromInput] (stdin) %v", numbers)
-			return
+			numbers = append(numbers, h.StdinNumberInput()...)
+			h.PrintDebug(fmt.Sprintf("(stdin) %v", numbers), "GetNumberFromInput")
 		}
 
 		if state.fromArgs {
 			args := os.Args[1:]
-			log.Printf("debug: [GetNumberFromInput] (args) %v", args)
-			numbers = helpers.ProcessUint64Numbers(args)
-			return
+			h.PrintDebug(fmt.Sprintf("(args) %v", args), "GetNumberFromInput")
+			numbers = append(numbers, h.ProcessUint64Numbers(args)...)
 		}
+
+		h.PrintDebug(fmt.Sprintf("(stdin + args) %v", numbers), "GetNumberFromInput")
+		return
 	}
 
-	numbers = helpers.InteractiveNumberInput()
-	log.Printf("debug: [GetNumberFromInput] (interactive) %v", numbers)
+	numbers = h.InteractiveNumberInput()
+	h.PrintDebug(fmt.Sprintf("(interactive) %v", numbers), "GetNumberFromInput")
 	return
 }

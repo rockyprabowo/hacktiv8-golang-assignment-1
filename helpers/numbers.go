@@ -2,7 +2,6 @@ package helpers
 
 import (
 	"fmt"
-	"log"
 	"strconv"
 )
 
@@ -20,12 +19,12 @@ func ProcessUint64Numbers(input []string) (numbers []uint64) {
 	for _, text := range input {
 		num, err := TryParseUint(text)
 		if err != nil {
-			log.Println("debug: [ProcessUint64Numbers] " + err.Error())
+			PrintDebug(err.Error(), "ProcessUint64Numbers")
 			continue
 		}
 		numbers = append(numbers, num)
 	}
-	log.Printf("debug: [ProcessUint64Numbers] processed input as %v", numbers)
+	PrintDebug(fmt.Sprintf("processed input as %v", numbers), "ProcessUint64Numbers")
 
 	return
 }

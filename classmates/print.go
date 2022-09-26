@@ -2,7 +2,7 @@ package classmates
 
 import (
 	"fmt"
-	"rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
+	h "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
 	"strings"
 )
 
@@ -15,7 +15,7 @@ func (classmate Classmate) Print() {
 		fmt.Sprintf("Occupation\t\t: %s\n", classmate.Occupation),
 		fmt.Sprintf("Reasons of Choosing Go\t: %s\n", classmate.ReasonsOfChoosingGo),
 	}
-	maxLen := helpers.MaxLenOnSlice(&textToPrint)
+	maxLen := h.MaxLenOnSlice(&textToPrint)
 
 	fmt.Println(strings.Repeat("=", maxLen))
 	for _, text := range textToPrint {
@@ -23,5 +23,4 @@ func (classmate Classmate) Print() {
 	}
 	fmt.Println(strings.Repeat("=", maxLen))
 	fmt.Println()
-
 }

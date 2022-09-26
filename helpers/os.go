@@ -10,9 +10,8 @@ import (
 func GuessRuntimeSigtermKey() string {
 	if runtime.GOOS == "darwin" {
 		return "cmd+c"
-	} else {
-		return "ctrl+c"
 	}
+	return "ctrl+c"
 }
 
 // If there's an error, print it and exit the program
