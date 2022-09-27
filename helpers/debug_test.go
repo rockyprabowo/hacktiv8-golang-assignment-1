@@ -44,7 +44,9 @@ func TestIsDebug(t *testing.T) {
 			if got := IsDebug(); got != tt.want {
 				t.Errorf("IsDebug() = %v, want %v", got, tt.want)
 			}
-			t.Setenv("DEBUG", "")
+			for name := range tt.withEnv {
+				t.Setenv(name, "")
+			}
 		})
 	}
 }
