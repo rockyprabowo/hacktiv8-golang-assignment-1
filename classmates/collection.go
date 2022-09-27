@@ -1,6 +1,6 @@
 package classmates
 
-import "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
+import "rockyprabowo/hacktiv8-assignments/helpers"
 
 // `_ClassmateCollection` is a struct that contains a slice of `Classmate` data, a map of memoised `Classmate`s, and
 // a set of invalid `Classmate` AttendanceNumbers.

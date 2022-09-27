@@ -1,6 +1,6 @@
 package classmates
 
-import "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
+import "rockyprabowo/hacktiv8-assignments/helpers"
 
 // This variable holds the main `Classmate` collection.
 // TODO: Use real data when it's possible.

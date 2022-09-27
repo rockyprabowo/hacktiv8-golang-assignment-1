@@ -2,7 +2,7 @@ package classmates
 
 import (
 	"fmt"
-	h "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
+	h "rockyprabowo/hacktiv8-assignments/helpers"
 	"strings"
 )
 

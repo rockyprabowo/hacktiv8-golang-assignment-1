@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"rockyprabowo/hacktiv8-assignments/assignment-1/classmates"
-	h "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
+	h "rockyprabowo/hacktiv8-assignments/helpers"
 )
 
 // Main application loop.

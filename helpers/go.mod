@@ -1,3 +1,3 @@
-module rockyprabowo/hacktiv8-assignments/assignment-1/helpers
+module rockyprabowo/hacktiv8-assignments/helpers
 
 go 1.19

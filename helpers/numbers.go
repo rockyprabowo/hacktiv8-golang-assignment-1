@@ -16,6 +16,7 @@ func TryParseUint(text string) (uint64, error) {
 
 // Takes a slice of strings, then try to parse each string as a uint64, and returns the slice of parsed uint64s.
 func ProcessUint64Numbers(input []string) (numbers []uint64) {
+	numbers = []uint64{}
 	for _, text := range input {
 		num, err := TryParseUint(text)
 		if err != nil {
