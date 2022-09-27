@@ -37,13 +37,14 @@ func TestIsDebug(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
-		for name, value := range tt.withEnv {
-			t.Setenv(name, value)
-		}
 		t.Run(tt.name, func(t *testing.T) {
+			for name, value := range tt.withEnv {
+				t.Setenv(name, value)
+			}
 			if got := IsDebug(); got != tt.want {
 				t.Errorf("IsDebug() = %v, want %v", got, tt.want)
 			}
+			t.Setenv("DEBUG", "")
 		})
 	}
 }
