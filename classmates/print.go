@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-// Prints the classmate data with pretty decent formatting
+// Prints the `Classmate` data with pretty decent formatting
 func (classmate Classmate) Print() {
 	textToPrint := []string{
 		fmt.Sprintf("Attendance Number\t: %d\n", classmate.AttendanceNumber),

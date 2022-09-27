@@ -5,7 +5,7 @@ import (
 	h "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
 )
 
-// It's a struct that holds the state of the application.
+// A struct that holds the state of the application.
 //
 // The `interactive` field is a boolean that indicates whether the application is running in
 // interactive mode.
@@ -19,7 +19,7 @@ import (
 // @property {bool} interactive - If true, the app will run in interactive mode.
 // @property {bool} debugMode - If true, the app will print debug information to the console.
 // @property {bool} fromStdin - true if the input is from stdin
-// @property {bool} fromArgs - Whether the input is from command line arguments.
+// @property {bool} fromArgs - true if the input is from command line arguments.
 type _AppState struct {
 	interactive bool
 	debugMode   bool
@@ -30,7 +30,7 @@ type _AppState struct {
 // This variable holds the application states.
 var state _AppState
 
-// `Setup()` sets up the application state and determines if the application should enter interactive
+// Sets up the application state and determines if the application should enter interactive
 // mode
 func Setup() {
 	// Setup logging and application initial states.

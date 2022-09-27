@@ -1,18 +1,17 @@
 package helpers
 
 import (
-	"bufio"
-	"fmt"
 	"os"
-	"strings"
 )
 
-// If the length of the os.Args slice is greater than 1, return true, otherwise return false.
+// Returns true, if the length of the os.Args slice is greater than 1.
+// Returns false otherwise.
 func HasArguments() bool {
 	return len(os.Args) > 1
 }
 
-// If the stdin is from a terminal, then it returns false, otherwise it returns true
+// Returns true if the stdin got a stream of data waiting to be processed.
+// Returns false if the stdin is from a terminal.
 func HasDataInStdin() bool {
 	stat, _ := os.Stdin.Stat()
 	if (stat.Mode() & os.ModeCharDevice) == 0 {
@@ -21,45 +20,4 @@ func HasDataInStdin() bool {
 	}
 	PrintDebug("stdin is from a terminal", "HasDataInStdin")
 	return false
-}
-
-// It reads from stdin, splits the input by spaces, and returns a slice of uint64 numbers
-func StdinNumberInput() (numbers []uint64) {
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		text := scanner.Text()
-		PrintDebug(fmt.Sprintf("input is %v", text), "StdinNumberInput")
-
-		if len(text) > 0 {
-			input := strings.Split(text, " ")
-			numbers = append(numbers, ProcessUint64Numbers(input)...)
-		}
-	}
-
-	if err := scanner.Err(); err != nil {
-		ExitWithError(err)
-	}
-
-	return
-}
-
-// It takes a string of numbers separated by spaces interactively, and returns a slice of uint64 numbers
-func InteractiveNumberInput() (numbers []uint64) {
-	scanner := bufio.NewScanner(os.Stdin)
-
-	fmt.Println("[press " + GuessRuntimeSigtermKey() + " to exit]")
-	fmt.Print("Attendance number(s): ")
-	scanner.Scan()
-	text := scanner.Text()
-	PrintDebug(fmt.Sprintf("input is %v", text), "InteractiveNumberInput")
-	if len(text) > 0 {
-		input := strings.Split(text, " ")
-		numbers = ProcessUint64Numbers(input)
-	}
-
-	if err := scanner.Err(); err != nil {
-		ExitWithError(err)
-	}
-
-	return
 }

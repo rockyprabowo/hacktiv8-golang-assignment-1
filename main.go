@@ -7,8 +7,9 @@ import (
 	h "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
 )
 
-// Get the attendance number from command argument (os.Args) or user input (fmt.Scanln), get the
-// classmate with the Attendance Number, and print the classmate data.
+// Main application loop.
+// Firstly, get the attendance number from command arguments or user input (stdin or interactive), then get the
+// classmate with its AttendanceNumber, and if the classmate exists, print the aforementioned classmate data.
 func main() {
 	ShowBanner()
 	Setup()
@@ -17,7 +18,7 @@ func main() {
 	for interactive := true; interactive; interactive = state.interactive {
 		counter, increment, incrementError := h.UseProcessCounter()
 
-		// 1. Get the attendance number from command argument or user input (stdin or interactive).
+		// 1. Get the attendance number from command arguments or user input (stdin or interactive).
 		numbers := GetNumberFromInput()
 
 		for _, number := range numbers {
@@ -38,6 +39,7 @@ func main() {
 			increment()
 		}
 
+		// Shows an error if input is not valid
 		if len(numbers) == 0 {
 			fmt.Println("error: invalid input. please try again.")
 			fmt.Println()
@@ -47,6 +49,7 @@ func main() {
 			continue
 		}
 
+		// Prints the process counter at the end of every input.
 		fmt.Printf("%d requested, %d processed, %d error(s)\n",
 			counter.RequestedCount, counter.ProcessedCount, counter.ErrorCount)
 	}

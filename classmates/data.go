@@ -2,7 +2,7 @@ package classmates
 
 import "rockyprabowo/hacktiv8-assignments/assignment-1/helpers"
 
-// Classmate collection.
+// This variable holds the main `Classmate` collection.
 // TODO: Use real data when it's possible.
 var collection = _ClassmateCollection{
 	memo:    map[uint64]*Classmate{},
